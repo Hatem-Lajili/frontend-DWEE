@@ -8,7 +8,6 @@ import {
   FormBuilder,
 } from "@angular/forms";
 import { Doctors } from "../../doctors.model";
-import { formatDate } from "@angular/common";
 @Component({
   selector: "app-form-dialog",
   templateUrl: "./form-dialog.component.html",
@@ -38,7 +37,7 @@ export class FormDialogComponent {
   }
   formControl = new FormControl("", [
     Validators.required,
-    // Validators.email,
+    Validators.email,
   ]);
   getErrorMessage() {
     return this.formControl.hasError("required")
@@ -53,15 +52,14 @@ export class FormDialogComponent {
       firstname: [this.doctors.firstname],
       lastname: [this.doctors.lastname],
       email: [this.doctors.email],
+      password: [this.doctors.password],
+      conformPassword: [this.doctors.confirmPassword],
       gender : [this.doctors.gender],
-      date: [
-
-      ],
-      phonenumber: [this.doctors.phonenumber],
+      dateJoining: [this.doctors.dateJoining],
+      phoneNumber: [this.doctors.phoneNumber],
     });
   }
   submit() {
-    // emppty stuff
   }
   onNoClick(): void {
     this.dialogRef.close();

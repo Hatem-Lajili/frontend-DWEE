@@ -25,11 +25,11 @@ export class DepartmentListComponent
 {
   displayedColumns = [
     "select",
-    "d_no",
-    "d_name",
+    "numberDepartment",
+    "name",
+    "departmentHead",
     "description",
-    "d_date",
-    "d_head",
+    "departmentDate",
     "status",
     "actions",
   ];
@@ -37,7 +37,7 @@ export class DepartmentListComponent
   dataSource: ExampleDataSource | null;
   selection = new SelectionModel<DepartmentList>(true, []);
   index: number;
-  id: number;
+  id: string;
   departmentList: DepartmentList | null;
   constructor(
     public httpClient: HttpClient,
@@ -87,8 +87,10 @@ export class DepartmentListComponent
       }
     });
   }
-  editCall(row) {
+  editCall(row: DepartmentList) {
     this.id = row.id;
+    this.departmentListService.updateDepartmentList(row, this.id);
+
     let tempDirection;
     if (localStorage.getItem("isRtl") === "true") {
       tempDirection = "rtl";
@@ -97,6 +99,7 @@ export class DepartmentListComponent
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
+        id: this.departmentList,
         departmentList: row,
         action: "edit",
       },
@@ -108,7 +111,8 @@ export class DepartmentListComponent
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
           (x) => x.id === this.id
         );
-        // Then you update that record using data from dialogData (values you enetered)
+
+        // Then you update that record using data from dialogData (values you entered)
         this.exampleDatabase.dataChange.value[foundIndex] =
           this.departmentListService.getDialogData();
         // And lastly refresh table
@@ -176,6 +180,7 @@ export class DepartmentListComponent
         (d) => d === item
       );
       // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
+      this.departmentListService.deleteDepartmentList(item.id);
       this.exampleDatabase.dataChange.value.splice(index, 1);
       this.refreshTable();
       this.selection = new SelectionModel<DepartmentList>(true, []);
@@ -248,11 +253,11 @@ export class ExampleDataSource extends DataSource<DepartmentList> {
           .slice()
           .filter((departmentList: DepartmentList) => {
             const searchStr = (
-              departmentList.d_no +
-              departmentList.d_name +
+              departmentList.numberDepartment +
+              departmentList.name +
               departmentList.description +
-              departmentList.d_date +
-              departmentList.d_head +
+              departmentList.departmentDate +
+              departmentList.departmentHead +
               departmentList.status
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
@@ -276,26 +281,26 @@ export class ExampleDataSource extends DataSource<DepartmentList> {
       return data;
     }
     return data.sort((a, b) => {
-      let propertyA: number | string = "";
-      let propertyB: number | string = "";
+      let propertyA: number | string | Date = "";
+      let propertyB: number | string | Date = "";
       switch (this._sort.active) {
         case "id":
           [propertyA, propertyB] = [a.id, b.id];
           break;
-        case "d_no":
-          [propertyA, propertyB] = [a.d_no, b.d_no];
+        case "numberDepartment":
+          [propertyA, propertyB] = [a.numberDepartment, b.numberDepartment];
           break;
-        case "d_name":
-          [propertyA, propertyB] = [a.d_name, b.d_name];
+        case "name":
+          [propertyA, propertyB] = [a.name, b.name];
           break;
         case "description":
           [propertyA, propertyB] = [a.description, b.description];
           break;
-        case "d_date":
-          [propertyA, propertyB] = [a.d_date, b.d_date];
+        case "departmentHead":
+          [propertyA, propertyB] = [a.departmentHead, b.departmentHead];
           break;
-        case "d_head":
-          [propertyA, propertyB] = [a.d_head, b.d_head];
+        case "departmentDate":
+          [propertyA, propertyB] = [a.departmentDate, b.departmentDate];
           break;
         case "status":
           [propertyA, propertyB] = [a.status, b.status];

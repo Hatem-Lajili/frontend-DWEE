@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
   tasks = [
     {
       id: '1',
-      title: 'Check patient report',
+      title: 'Check Device report',
       done: true,
       priority: 'High',
     },
@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       id: '3',
-      title: 'Order new medicine stock',
+      title: 'Order new Device',
       done: false,
       priority: 'Low',
     },
@@ -141,11 +141,11 @@ export class DashboardComponent implements OnInit {
     this.areaChartOptions = {
       series: [
         {
-          name: 'New Patients',
+          name: 'New Devices',
           data: [31, 40, 28, 51, 42, 85, 77],
         },
         {
-          name: 'Old Patients',
+          name: 'Old Devices',
           data: [11, 32, 45, 32, 34, 52, 41],
         },
       ],

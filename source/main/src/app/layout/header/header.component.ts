@@ -34,6 +34,7 @@ export class HeaderComponent
   defaultFlag: string;
   isOpenSidebar: boolean;
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     public elementRef: ElementRef,
@@ -104,7 +105,6 @@ export class HeaderComponent
   ngOnInit() {
     this.config = this.configService.configData;
     const userRole = this.authService.currentUserValue.role;
-    this.userImg = this.authService.currentUserValue.img;
 
     if (userRole === "ROLE_ADMIN") {
       this.homePage = "admin/dashboard/main";

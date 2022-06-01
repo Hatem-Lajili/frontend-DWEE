@@ -8,11 +8,15 @@ import {Devices} from "./devices.model";
 export class DevicesService extends UnsubscribeOnDestroyAdapter{
   isTblLoading = true;
   dataChange: BehaviorSubject<Devices[]> = new BehaviorSubject<Devices[]>([]);
+  dialogData: any;
   constructor(private httpClient: HttpClient) {
     super();
   }
   get data(): Devices[] {
     return this.dataChange.value;
+  }
+  getDialogData() {
+    return this.dialogData;
   }
   /** CRUD METHODS */
   getAllDevices(): void {
@@ -27,4 +31,35 @@ export class DevicesService extends UnsubscribeOnDestroyAdapter{
       }
     );
 }
+  addDevices(devices: Devices): void {
+    this.dialogData = devices;
+
+    this.httpClient.post('http://localhost:8989/api/devices', devices).subscribe(data => {
+        this.dialogData = devices;
+      },
+      (err: HttpErrorResponse) => {
+        // error code here
+      });
+  }
+  updateDevices(devices: Devices, id: any ): void {
+    this.dialogData = devices;
+    this.httpClient.put('http://localhost:8989/api/devices/' + id, devices).subscribe(data => {
+        this.dialogData = devices;
+      },
+      (err: HttpErrorResponse) => {
+        // error code here
+      }
+    );
+  }
+  deleteDevices(id: string): void {
+    console.log(id);
+
+    this.httpClient.delete('http://localhost:8989/api/devices/' + id).subscribe(data => {
+        console.log(id);
+      },
+      (err: HttpErrorResponse) => {
+        // error code here
+      }
+    );
+  }
 }

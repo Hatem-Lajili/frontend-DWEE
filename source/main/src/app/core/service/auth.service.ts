@@ -34,11 +34,16 @@ setUserValue(user){
         password,
       });
   }
-  register(email: any, password: any, role: any  ) {
+  register(email: any, firstname: any, lastname: any, phoneNumber: any, gender: any, dateJoining: any, password: any, role: any  ) {
     console.log('testing', email , password, role );
     return this.http
       .post<any>(`${environment.apiUrl}auth/signup`, {
         email,
+        firstname,
+        lastname,
+        phoneNumber,
+        gender,
+        dateJoining,
         password,
         role
       });

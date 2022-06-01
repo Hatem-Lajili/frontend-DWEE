@@ -25,8 +25,8 @@ import { MaterialFileInputModule } from "ngx-material-file-input";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { DoctorsService } from "./alldoctors/doctors.service";
-import { ComponentsModule } from "src/app/shared/components/components.module";
-import { SharedModule } from "./../../shared/shared.module";
+import { ComponentsModule } from "../../shared/components/components.module";
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -63,4 +63,4 @@ import { SharedModule } from "./../../shared/shared.module";
   ],
   providers: [DoctorsService],
 })
-export class DoctorsModule {}
+export class DoctorsModule { }

@@ -5,7 +5,6 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 @Injectable()
 export class DoctorsService extends UnsubscribeOnDestroyAdapter {
-  private readonly API_URL = "assets/data/doctors.json";
   isTblLoading = true;
   dataChange: BehaviorSubject<Doctors[]> = new BehaviorSubject<Doctors[]>([]);
   // Temporarily stores data from dialogs
@@ -20,8 +19,8 @@ export class DoctorsService extends UnsubscribeOnDestroyAdapter {
     return this.dialogData;
   }
   /** CRUD METHODS */
-  getAllDoctorss(): void {
-    this.subs.sink = this.httpClient.get<Doctors[]>(this.API_URL).subscribe(
+  getAllDoctors(): void {
+    this.subs.sink = this.httpClient.get<Doctors[]>('http://localhost:8989/api/users').subscribe(
       (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
@@ -35,33 +34,32 @@ export class DoctorsService extends UnsubscribeOnDestroyAdapter {
   addDoctors(doctors: Doctors): void {
     this.dialogData = doctors;
 
-    /*  this.httpClient.post(this.API_URL, doctors).subscribe(data => {
-      this.dialogData = doctors;
+    this.httpClient.post('http://localhost:8989/api/users', doctors).subscribe(data => {
+        this.dialogData = doctors;
       },
       (err: HttpErrorResponse) => {
      // error code here
-    });*/
+    });
   }
-  updateDoctors(doctors: Doctors): void {
+  updateDoctors(doctors: Doctors, id: any ): void {
     this.dialogData = doctors;
-
-    /* this.httpClient.put(this.API_URL + doctors.id, doctors).subscribe(data => {
+    this.httpClient.put('http://localhost:8989/api/users/' + id, doctors).subscribe(data => {
       this.dialogData = doctors;
     },
     (err: HttpErrorResponse) => {
       // error code here
     }
-  );*/
+  );
   }
-  deleteDoctors(id: number): void {
+  deleteDoctors(id: string): void {
     console.log(id);
 
-    /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {
+    this.httpClient.delete('http://localhost:8989/api/users/' + id).subscribe(data => {
       console.log(id);
       },
       (err: HttpErrorResponse) => {
          // error code here
       }
-    );*/
+    );
   }
 }

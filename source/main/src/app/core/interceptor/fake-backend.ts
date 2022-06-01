@@ -13,36 +13,7 @@ import { User } from "../models/user";
 import { Role } from "../models/role";
 
 const users: User[] = [
-  {
-    id: 1,
-    img: "assets/images/user/admin.jpg",
-    email: "admin@hospital.org",
-    password: "admin@123",
-    firstName: "Sarah",
-    lastName: "Smith",
-    role: Role.Admin,
-    token: "admin-token",
-  },
-  {
-    id: 2,
-    img: "assets/images/user/patient.jpg",
-    email: "chiefs@hospital.org",
-    password: "chiefs@123",
-    firstName: "Cara",
-    lastName: "Stevens",
-    role: Role.Chiefs,
-    token: "patient-token",
-  },
-  {
-    id: 3,
-    img: "assets/images/user/doctor.jpg",
-    email: "doctor@hospital.org",
-    password: "doctor@123",
-    firstName: "Ashton",
-    lastName: "Cox",
-    role: Role.Doctor,
-    token: "doctor-token",
-  },
+
 ];
 
 @Injectable()
@@ -77,10 +48,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       }
       return ok({
         id: user.id,
-        img: user.img,
         email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        gender: user.gender,
+        dateJoining: user.dateJoining,
         role: user.role,
         token: user.token,
       });
@@ -88,6 +60,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     // helper functions
 
+    // tslint:disable-next-line:no-shadowed-variable
     function ok(body?) {
       return of(new HttpResponse({ status: 200, body }));
     }

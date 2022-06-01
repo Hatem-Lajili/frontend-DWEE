@@ -71,14 +71,13 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
                   <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="d_no">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'tbl-col-width-per-6'">#
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'"> {{row.d_no}}</mat-cell>
+                <ng-container matColumnDef="numberDepartment">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.numberDepartment}}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="d_name">
+                <ng-container matColumnDef="name">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Department Name</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.d_name}}</mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="description">
                   <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'tbl-col-width-per-100'">Description
@@ -86,13 +85,13 @@
                   <mat-cell *matCellDef="let row"> <span class="truncate-text"
                       [ngClass]="'tbl-col-width-per-80'">{{row.description}}</span></mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="d_date">
+                <ng-container matColumnDef="departmentDate">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Department Date</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.d_date | date: 'MM/dd/yyyy'}}</mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.departmentDate | date: 'MM/dd/yyyy'}}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="d_head">
+                <ng-container matColumnDef="departmentHead">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Department Head</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.d_head}}</mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.departmentHead}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="status">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Status

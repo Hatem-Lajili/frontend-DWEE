@@ -1,26 +1,27 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { Doctors } from "./doctors.model";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
+import {environment} from "../../../../environments/environment";
+import {User} from "../../../core/models/user";
 @Injectable()
 export class DoctorsService extends UnsubscribeOnDestroyAdapter {
   isTblLoading = true;
-  dataChange: BehaviorSubject<Doctors[]> = new BehaviorSubject<Doctors[]>([]);
+  dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
   constructor(private httpClient: HttpClient) {
     super();
   }
-  get data(): Doctors[] {
+  get data(): User[] {
     return this.dataChange.value;
   }
   getDialogData() {
     return this.dialogData;
   }
   /** CRUD METHODS */
-  getAllDoctorss(): void {
-    this.subs.sink = this.httpClient.get<Doctors[]>('http://localhost:8989/api/doctors').subscribe(
+  getAllDoctors(): void {
+    this.subs.sink = this.httpClient.get<User[]>(`${environment.apiUrl}users/doctors`).subscribe(
       (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
@@ -31,20 +32,20 @@ export class DoctorsService extends UnsubscribeOnDestroyAdapter {
       }
     );
   }
-  addDoctors(doctors: Doctors): void {
-    this.dialogData = doctors;
+  addDoctors(user: User): void {
+    this.dialogData = user;
 
-    this.httpClient.post('http://localhost:8989/api/doctors', doctors).subscribe(data => {
-        this.dialogData = doctors;
+    this.httpClient.post(`${environment.apiUrl}users`, user).subscribe(data => {
+        this.dialogData = user;
       },
       (err: HttpErrorResponse) => {
      // error code here
     });
   }
-  updateDoctors(doctors: Doctors, id: any ): void {
-    this.dialogData = doctors;
-    this.httpClient.put('http://localhost:8989/api/doctors/' + id, doctors).subscribe(data => {
-      this.dialogData = doctors;
+  updateDoctors(user: User, id: any ): void {
+    this.dialogData = user;
+    this.httpClient.put(`${environment.apiUrl}users/doctors/` + id, user).subscribe(data => {
+      this.dialogData = user;
     },
     (err: HttpErrorResponse) => {
       // error code here
@@ -54,7 +55,7 @@ export class DoctorsService extends UnsubscribeOnDestroyAdapter {
   deleteDoctors(id: string): void {
     console.log(id);
 
-    this.httpClient.delete('http://localhost:8989/api/doctors/' + id).subscribe(data => {
+    this.httpClient.delete(`${environment.apiUrl}users/doctors/` + id).subscribe(data => {
       console.log(id);
       },
       (err: HttpErrorResponse) => {

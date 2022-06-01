@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.routerObj = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // logic for select active menu in dropdown
-        const role = ["ROLE_ADMIN", "chiefs", "doctor"];
+        const role = ["ROLE_ADMIN", "ROLE_CHIEF_SERVICE", "ROLE_DOCTOR"];
         const currenturl = event.url.split("?")[0];
         const firstString = currenturl.split("/").slice(1)[0];
 
@@ -101,10 +101,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.authService.currentUserValue) {
       const userRole = this.authService.currentUserValue.role;
-      this.userFullName = this.authService.currentUserValue.firstName +
+      this.userFullName = this.authService.currentUserValue.firstname +
         " " +
-        this.authService.currentUserValue.lastName;
-      this.userImg = this.authService.currentUserValue.img;
+        this.authService.currentUserValue.lastname;
 
       this.sidebarItems = ROUTES.filter(
         (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf("All") !== -1
@@ -114,14 +113,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
         console.log('99999999999');
         this.userType = 'Admin';
       } else if (userRole[0] === Role.Chiefs) {
-        console.log('5555555555')
-        this.userType = Role.Chiefs;
-      } else if (userRole[0] === Role.Doctor) {
-        console.log('777777777777')
-        this.userType = Role.Doctor;
+        console.log('5555555555');
+        this.userType = 'Chief Service';
       } else {
-        console.log('8888888888888888')
-        this.userType = Role.Admin;
+        console.log('8888888888888888');
+        this.userType = 'Doctor';
       }
     }
 
@@ -173,7 +169,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       if (!res.success) {
         setTimeout(() => {
           this.router.navigate(["/authentication/signin"]);
-        }, 1000 )
+        }, 1000 );
       }
     });
   }

@@ -125,10 +125,10 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                   <mat-form-field class="example-full-width mb-3" appearance="outline">
                     <mat-label>Date Of Birth</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="dob" required>
+                    <input matInput [matDatepicker]="picker" formControlName="dateJoining" required>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                    <mat-error *ngIf="docForm.get('dob').hasError('required')">
+                    <mat-error *ngIf="docForm.get('dateJoining').hasError('required')">
                       Please select date
                     </mat-error>
                   </mat-form-field>

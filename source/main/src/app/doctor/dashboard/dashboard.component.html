@@ -5,43 +5,43 @@
       <app-breadcrumb [title]="'Doctor Dashboad'" [items]="[]" [active_item]="'Dashboad'"></app-breadcrumb>
     </div>
     <!-- Widgets -->
+    <div class="card">
     <div class="row">
       <div class="col-lg-3 col-sm-6">
         <div class="info-box7 l-bg-card1 order-info-box7">
           <div class="info-box7-block">
-            <h5 class="m-b-15">Todays Patients</h5>
-            <h2 class="text-end"><i class="fas fa-user-injured float-start"></i><span>231</span></h2>
-            <p class="m-b-0">18% Higher Then Last Month</p>
+            <h5 class="m-b-15"><i class="fa fa-thermometer-half"></i><span> Temperature</span></h5>
+            <h2 class="text-end"><span>231 &#8451;</span></h2>
           </div>
         </div>
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="info-box7 l-bg-card2 order-info-box7">
           <div class="info-box7-block">
-            <h5 class="m-b-15">Appointments</h5>
-            <h2 class="text-end"><i class="far fa-calendar-check float-start"></i><span>122</span></h2>
-            <p class="m-b-0">21% Higher Then Last Month</p>
+            <h5 class="m-b-15"><i class="fa fa-credit-card"></i><span> Flow</span></h5>
+            <h2 class="text-end"><span>122 L/M</span></h2>
           </div>
         </div>
       </div>
+    </div>
+    <div class="row">
       <div class="col-lg-3 col-sm-6">
         <div class="info-box7 l-bg-card3 order-info-box7">
           <div class="info-box7-block">
-            <h5 class="m-b-15">Todays Operations</h5>
-            <h2 class="text-end"><i class="fas fa-cut float-start"></i><span>28</span></h2>
-            <p class="m-b-0">37% Higher Then Last Month</p>
+            <h5 class="m-b-15"><i class="fas fa-cut float-start"></i><span> SpO<sub>2</sub></span></h5>
+            <h2 class="text-end"><span>28 %</span></h2>
           </div>
         </div>
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="info-box7 l-bg-card4 order-info-box7">
           <div class="info-box7-block">
-            <h5 class="m-b-15">Online Appointment</h5>
-            <h2 class="text-end"><i class="fab fa-internet-explorer float-start"></i><span>42</span></h2>
-            <p class="m-b-0">10% Higher Then Last Month</p>
+            <h5 class="m-b-15">FiO<sub>2</sub></h5>
+            <h2 class="text-end"><i class="fab fa-internet-explorer float-start"></i><span>42 %</span></h2>
           </div>
         </div>
       </div>
+    </div>
     </div>
     <!-- #END# Widgets -->
     <div class="row">
@@ -49,7 +49,7 @@
         <div class="card">
           <div class="header">
             <h2>
-              Patients Survay</h2>
+              Devices Survay</h2>
 
           </div>
           <div class="body">
@@ -63,7 +63,7 @@
       <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
-            <h2>Appointment Review</h2>
+            <h2>Device Review</h2>
 
           </div>
           <div class="body">
@@ -342,7 +342,7 @@
         <div class="card">
           <div class="header">
             <h2>
-              Doctors List</h2>
+              Devices List</h2>
 
           </div>
           <div class="tableBody">
@@ -351,22 +351,19 @@
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>Doctor Name</th>
+                  <th>ID Devices</th>
                   <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                  <td class="table-img">
-                    <img src="assets/images/user/user5.jpg" alt="">
-                  </td>
                   <td>
                     <div class="media-title"><a href="mailto:test@gmail.com"> Dr.Jay Soni
                     </a></div>
                     <div class="text-job font-11">(MBBS,MD)</div>
                   </td>
                   <td>
-                    <div class="badge col-green">Available</div>
+                    <div class="badge col-green">Active</div>
                   </td>
                 </tr>
                 <tr>
@@ -379,7 +376,7 @@
                     <div class="text-job font-11">(BDS,MDS)</div>
                   </td>
                   <td>
-                    <div class="badge col-red">Absend</div>
+                    <div class="badge col-red">Inactive</div>
                   </td>
                 </tr>
                 <tr>
@@ -392,7 +389,7 @@
                     <div class="text-job font-11">(BHMS)</div>
                   </td>
                   <td>
-                    <div class="badge col-green">Available</div>
+                    <div class="badge col-green">Active</div>
                   </td>
                 </tr>
                 <tr>
@@ -405,7 +402,7 @@
                     <div class="text-job font-11">(MBBS,MS)</div>
                   </td>
                   <td>
-                    <div class="badge col-green">Available</div>
+                    <div class="badge col-green">Active</div>
                   </td>
                 </tr>
                 <tr>
@@ -418,7 +415,7 @@
                     <div class="text-job font-11">(MBBS,MD)</div>
                   </td>
                   <td>
-                    <div class="badge col-red">Absend</div>
+                    <div class="badge col-red">Inactive</div>
                   </td>
                 </tr>
                 <tr>
@@ -443,7 +440,7 @@
       <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
-            <h2>Number Of Patients</h2>
+            <h2>Number Of Devices</h2>
           </div>
           <div class="body">
             <apx-chart [series]="linechartOptions.series" [chart]="linechartOptions.chart"
@@ -456,5 +453,5 @@
         </div>
       </div>
     </div>
-  </div>
+    </div>
 </section>

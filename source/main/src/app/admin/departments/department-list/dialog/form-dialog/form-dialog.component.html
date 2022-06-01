@@ -18,9 +18,9 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Department No</mat-label>
-            <input matInput formControlName="d_no" required>
+            <input matInput formControlName="numberDepartment" required>
             <mat-icon matSuffix>receipt</mat-icon>
-            <mat-error *ngIf="departmentListForm.get('d_no').hasError('required')">
+            <mat-error *ngIf="departmentListForm.get('numberDepartment').hasError('required')">
               Department no is required
             </mat-error>
           </mat-form-field>
@@ -28,10 +28,10 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Department Name</mat-label>
-            <input matInput formControlName="d_name" required>
-            <mat-icon matSuffix>face</mat-icon>
-            <mat-error *ngIf="departmentListForm.get('d_name').hasError('required')">
-              Department Name is required
+            <input matInput formControlName="name" required>
+            <mat-icon matSuffix>receipt</mat-icon>
+            <mat-error *ngIf="departmentListForm.get('name').hasError('required')">
+              Department no is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -40,10 +40,10 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Department date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="d_date">
+            <input matInput [matDatepicker]="picker" formControlName="departmentDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="departmentListForm.get('d_date').hasError('required')">
+            <mat-error *ngIf="departmentListForm.get('departmentDate').hasError('required')">
               Please select date
             </mat-error>
           </mat-form-field>
@@ -51,9 +51,9 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Department Head</mat-label>
-            <input matInput formControlName="d_head" required>
+            <input matInput formControlName="departmentHead" required>
             <mat-icon matSuffix>account_circle</mat-icon>
-            <mat-error *ngIf="departmentListForm.get('d_head').hasError('required')">
+            <mat-error *ngIf="departmentListForm.get('departmentHead').hasError('required')">
               Department Head is required
             </mat-error>
           </mat-form-field>

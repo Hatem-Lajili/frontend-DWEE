@@ -1,0 +1,107 @@
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+
+        <div class="modal-about">
+          <div class="font-weight-bold p-t-5 msl-3 font-17">
+            {{dialogTitle}}</div>
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="deviceForm" (ngSubmit)="submit">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>ID Device</mat-label>
+            <input matInput formControlName="idDevice" required>
+            <mat-icon matSuffix>face</mat-icon>
+            <mat-error *ngIf="deviceForm.get('idDevice').hasError('required')">
+              Name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Flow</mat-label>
+            <input matInput formControlName="flow" required>
+            <mat-icon matSuffix>business_center</mat-icon>
+            <mat-error *ngIf="deviceForm.get('flow').hasError('required')">
+              Department is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Temperature</mat-label>
+            <input matInput formControlName="temperature" required>
+            <mat-icon matSuffix>transgender</mat-icon>
+            <mat-error *ngIf="deviceForm.get('temperature').hasError('required')">
+              Department is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>FIO2</mat-label>
+            <input matInput formControlName="fio2" type="string">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="deviceForm.get('fio2').hasError('required')">
+              Mobile is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>SPO2</mat-label>
+            <input matInput formControlName="spo2" required>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="deviceForm.get('spo2').hasError('required') ">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>date</mat-label>
+            <input matInput formControlName="date" type="password" required>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="deviceForm.get('date').hasError('required')">
+              Please enter password
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Date Of Birth </mat-label>
+            <input matInput formControlName="isConnected" required>
+            <mat-icon matSuffix>date</mat-icon>
+            <mat-error *ngIf="deviceForm.get('isConnected').hasError('required')">
+              Please enter a birth date
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" [type]="submit" [disabled]="!deviceForm.valid"
+              [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

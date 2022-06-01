@@ -1,19 +1,19 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import {Injectable, OnInit} from "@angular/core";
+import {BehaviorSubject, Observable} from "rxjs";
 import { DepartmentList } from "./department-list.model";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 @Injectable()
-export class DepartmentListService extends UnsubscribeOnDestroyAdapter {
-  private readonly API_URL = "assets/data/departmentList.json";
+export class DepartmentListService extends UnsubscribeOnDestroyAdapter implements OnInit{
   isTblLoading = true;
-  dataChange: BehaviorSubject<DepartmentList[]> = new BehaviorSubject<
-    DepartmentList[]
-  >([]);
+  dataChange: BehaviorSubject<DepartmentList[]> = new BehaviorSubject<DepartmentList[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
   constructor(private httpClient: HttpClient) {
     super();
+  }
+
+  ngOnInit(): void {
   }
   get data(): DepartmentList[] {
     return this.dataChange.value;
@@ -24,7 +24,7 @@ export class DepartmentListService extends UnsubscribeOnDestroyAdapter {
   /** CRUD METHODS */
   getAllDepartmentLists(): void {
     this.subs.sink = this.httpClient
-      .get<DepartmentList[]>(this.API_URL)
+      .get<DepartmentList[]>("http://localhost:8989/api/departments")
       .subscribe(
         (data) => {
           this.isTblLoading = false;
@@ -39,33 +39,43 @@ export class DepartmentListService extends UnsubscribeOnDestroyAdapter {
   addDepartmentList(departmentList: DepartmentList): void {
     this.dialogData = departmentList;
 
-    /*  this.httpClient.post(this.API_URL, departmentList).subscribe(data => {
+    this.httpClient.post("http://localhost:8989/api/departments", departmentList).subscribe(data => {
       this.dialogData = departmentList;
       },
       (err: HttpErrorResponse) => {
      // error code here
-    });*/
+    });
   }
-  updateDepartmentList(departmentList: DepartmentList): void {
+/*  getDepartmentById( id: any): void {
+
+    this.httpClient.get("http://localhost:8989/api/departments/" + id ).subscribe(data => {
+      },
+      (err: HttpErrorResponse) => {
+        // error code here
+      }
+    );
+  }*/
+
+  updateDepartmentList(departmentList: DepartmentList, id: string): void {
     this.dialogData = departmentList;
 
-    /* this.httpClient.put(this.API_URL + departmentList.id, departmentList).subscribe(data => {
+    this.httpClient.put("http://localhost:8989/api/departments/" + id, departmentList).subscribe(data => {
       this.dialogData = departmentList;
     },
     (err: HttpErrorResponse) => {
       // error code here
     }
-  );*/
+  );
   }
-  deleteDepartmentList(id: number): void {
+  deleteDepartmentList(id: string): void {
     console.log(id);
 
-    /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {
+    this.httpClient.delete("http://localhost:8989/api/departments/" + id).subscribe(data => {
       console.log(id);
       },
       (err: HttpErrorResponse) => {
          // error code here
       }
-    );*/
+    );
   }
 }

@@ -21,19 +21,28 @@ import {ComponentsModule} from "../../shared/components/components.module";
 import {SharedModule} from "../../shared/shared.module";
 import { ChiefServiceRoutingModule } from './chief-service-routing.module';
 import { AddChiefServiceComponent } from './add-chief-service/add-chief-service.component';
-import { AllchiefServiceComponent } from './allchief-service/allchief-service.component';
+import { AllchiefSeviceComponent } from "./allchief-service/allchief-service.component";
+import { EditChiefServiceComponent } from './edit-chief-service/edit-chief-service.component';
+import {FormDialogComponent} from "./allchief-service/dialogs/form-dialog/form-dialog.component";
+import {DeleteDialogComponent} from "./allchief-service/dialogs/delete/delete.component";
+import { ChiefServiceService } from "./allchief-service/chief-service.service";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 
 @NgModule({
   declarations: [
     AddChiefServiceComponent,
-    AllchiefServiceComponent
+    AllchiefSeviceComponent,
+    EditChiefServiceComponent,
+    FormDialogComponent,
+    DeleteDialogComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
     MatFormFieldModule,
@@ -54,6 +63,6 @@ import { AllchiefServiceComponent } from './allchief-service/allchief-service.co
     ComponentsModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [ChiefServiceService],
 })
 export class ChiefServiceModule { }

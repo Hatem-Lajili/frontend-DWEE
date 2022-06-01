@@ -30,7 +30,7 @@
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Last Name</mat-label>
             <input matInput formControlName="lastname" required>
-            <mat-icon matSuffix>business_center</mat-icon>
+            <mat-icon matSuffix>face</mat-icon>
             <mat-error *ngIf="doctorsForm.get('lastname').hasError('required')">
               Department is required
             </mat-error>
@@ -39,37 +39,33 @@
       </div>
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>email</mat-label>
-            <input matInput formControlName="email" required>
-            <mat-icon matSuffix>flag</mat-icon>
-            <mat-error *ngIf="doctorsForm.get('email').hasError('required')">
-              Specialization is required
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender" required>
+              <mat-option [value]="'Male'">
+                Male
+              </mat-option>
+              <mat-option [value]="'Female'">
+                Female
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="doctorsForm.get('gender').hasError('required')">
+              Gender is required
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Gender</mat-label>
-            <input matInput formControlName="gender" required>
-            <mat-icon matSuffix>school</mat-icon>
-            <mat-error *ngIf="doctorsForm.get('gender').hasError('required')">
-              Department is required
+            <mat-label>Mobile</mat-label>
+            <input matInput formControlName="phoneNumber" type="string">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="doctorsForm.get('phoneNumber').hasError('required')">
+              Mobile is required
             </mat-error>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Mobile</mat-label>
-            <input matInput formControlName="phonenumber" type="string">
-            <mat-icon matSuffix>phone</mat-icon>
-            <mat-error *ngIf="doctorsForm.get('phonenumber').hasError('required')">
-              Mobile is required
-            </mat-error>
-          </mat-form-field>
-        </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Email</mat-label>
@@ -80,8 +76,40 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Date of birth</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateJoining">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="doctorsForm.get('dateJoining').hasError('required')">
+              Please select date
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
       <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password" name="password" required>
+            <mat-icon matSuffix>password</mat-icon>
+            <mat-error *ngIf="doctorsForm.get('password').hasError('required')">
+              Please enter password
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Conform Password</mat-label>
+            <input matInput formControlName="conformPassword" type="password" name="password" required>
+            <mat-icon matSuffix>password</mat-icon>
+            <mat-error *ngIf="doctorsForm.get('conformPassword').hasError('required')">
+              Please re-enter password
+            </mat-error>
+          </mat-form-field>
+        </div>
+
       </div>
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">

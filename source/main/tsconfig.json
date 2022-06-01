@@ -18,6 +18,10 @@
       "dom"
     ]
   },
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
   "angularCompilerOptions": {
     "enableIvy": true,
     "allowEmptyCodegenFiles": true

@@ -4,7 +4,7 @@ import { AlldoctorsComponent } from "./alldoctors/alldoctors.component";
 import { AddDoctorComponent } from "./add-doctor/add-doctor.component";
 import { EditDoctorComponent } from "./edit-doctor/edit-doctor.component";
 import { DoctorProfileComponent } from "./doctor-profile/doctor-profile.component";
-import { Page404Component } from "./../../authentication/page404/page404.component";
+import { Page404Component } from "../../authentication/page404/page404.component";
 const routes: Routes = [
   {
     path: "allDoctors",

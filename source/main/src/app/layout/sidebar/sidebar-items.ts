@@ -1,19 +1,6 @@
 import { RouteInfo } from "./sidebar.metadata";
+// @ts-ignore
 export const ROUTES: RouteInfo[] = [
-  /*{
-    path: "",
-    title: "MENUITEMS.MAIN.TEXT",
-    moduleName: "",
-    iconType: "",
-    icon: "",
-    class: "",
-    groupTitle: true,
-    badge: "",
-    badgeClass: "",
-    role: ["All"],
-    submenu: [],
-  },*/
-
   // Admin Modules
   {
     path: "",
@@ -67,7 +54,7 @@ export const ROUTES: RouteInfo[] = [
     role: ["Admin"],
     submenu : [
       {
-        path: "/admin/chief-service/chiefs-list",
+        path: "/admin/chief-service/allchief-service",
         title: "Chief Service List",
         moduleName: "chief-service",
         iconType: "",
@@ -80,7 +67,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/admin/chief-service/add-chiefs",
+        path: "/admin/chief-service/add-chief-service",
         title: "Add Chief Service",
         moduleName: "chief-service",
         iconType: "",
@@ -130,7 +117,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: "",
     badgeClass: "",
-    role: [""],
+    role: ["Admin"],
     submenu: [
       {
         path: "/admin/doctors/allDoctors",
@@ -196,7 +183,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: "",
     badgeClass: "",
-    role: [""],
+    role: ["Admin"],
     submenu: [
       {
         path: "/admin/devices/alldevices",
@@ -236,7 +223,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: "",
     badgeClass: "",
-    role: ["ROLE_ADMIN"],
+    role: ["Admin"],
     submenu: [
       {
         path: "/admin/departments/department-list",
@@ -266,75 +253,11 @@ export const ROUTES: RouteInfo[] = [
       },
     ],
   },
+
+];
   // Chief Service Modules
   /*{
-    path: "",
-    title: "MENUITEMS.DOCTORS.TEXT",
-    moduleName: "doctors",
-    iconType: "material-icons-two-tone",
-    icon: "supervised_user_circle",
-    class: "menu-toggle",
-    groupTitle: false,
-    badge: "",
-    badgeClass: "",
-    role: ["Chiefs"],
-    submenu: [
-      {
-        path: "/chiefs/doctors/allDoctors",
-        title: "MENUITEMS.DOCTORS.LIST.ALL-DOCTOR",
-        moduleName: "doctors",
-        iconType: "",
-        icon: "",
-        class: "ml-menu",
-        groupTitle: false,
-        badge: "",
-        badgeClass: "",
-        role: [""],
-        submenu: [],
-      },
-      {
-        path: "/chiefs/doctors/add-doctor",
-        title: "MENUITEMS.DOCTORS.LIST.ADD-DOCTOR",
-        moduleName: "doctors",
-        iconType: "",
-        icon: "",
-        class: "ml-menu",
-        groupTitle: false,
-        badge: "",
-        badgeClass: "",
-        role: [""],
-        submenu: [],
-      },
-      {
-        path: "/chiefs/doctors/edit-doctor",
-        title: "MENUITEMS.DOCTORS.LIST.EDIT-DOCTOR",
-        moduleName: "doctors",
-        iconType: "",
-        icon: "",
-        class: "ml-menu",
-        groupTitle: false,
-        badge: "",
-        badgeClass: "",
-        role: [""],
-        submenu: [],
-      },
-      {
-        path: "/chiefs/doctors/doctor-profile",
-        title: "MENUITEMS.DOCTORS.LIST.PROFILE",
-        moduleName: "doctors",
-        iconType: "",
-        icon: "",
-        class: "ml-menu",
-        groupTitle: false,
-        badge: "",
-        badgeClass: "",
-        role: [""],
-        submenu: [],
-      },
-    ],
-  },*/
-  /*{
-    path: "",
+    path: "/chiefs/dashboard",
     title: "Devices",
     moduleName: "devices",
     iconType: "material-icons-two-tone",
@@ -506,4 +429,4 @@ export const ROUTES: RouteInfo[] = [
       },
     ],
   },*/
-];
+

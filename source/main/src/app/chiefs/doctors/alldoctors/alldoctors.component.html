@@ -71,40 +71,34 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
                   <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="img">
-                  <mat-header-cell mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-5'"> Image
-                  </mat-header-cell>
-                  <mat-cell mat-cell *matCellDef="let row" class="table-img tbl-col-width-per-5"> <img
-                      [src]="row.img" />
-                  </mat-cell>
+                <ng-container matColumnDef="firstname">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>FirstName</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.firstname}}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+                <ng-container matColumnDef="lastname">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.lastname}}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="department">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Department</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.department}}</mat-cell>
+                <ng-container matColumnDef="gender">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Gender</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.gender}}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="specialization">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Specialization</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.specialization}}</mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="degree">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Degree</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.degree}}</mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="mobile">
+                <ng-container matColumnDef="phoneNumber">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.mobile}}</mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.phoneNumber}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="email">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
                   <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="date">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Joining Date</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.date | date: 'MM/dd/yyyy'}}</mat-cell>
+                <ng-container matColumnDef="password"  >
+                  <mat-header-cell *matHeaderCellDef mat-sort-header >Password</mat-header-cell>
+                  <mat-cell *matCellDef="let row" > {{row.password}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="dateJoining">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Date of Joining</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.
+                    dateJoining | date: 'MM/dd/yyyy'}}</mat-cell>
                 </ng-container>
                 <!-- actions -->
                 <ng-container matColumnDef="actions">

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import {DoctorsService} from "../alldoctors/doctors.service";
 @Component({
@@ -6,20 +6,20 @@ import {DoctorsService} from "../alldoctors/doctors.service";
   templateUrl: "./edit-doctor.component.html",
   styleUrls: ["./edit-doctor.component.sass"],
 })
-export class EditDoctorComponent {
+export class EditDoctorComponent implements OnInit {
   docForm: FormGroup;
   formdata = {
     firstname: "Pooja",
     lastname: "Sarma",
     gender: "Female",
-    phonenumber: "123456789",
+    phoneNumber: "123456789",
     password: "123",
     conformPassword: "123",
     email: "test@example.com",
     designation: "Sr. Doctor",
     department: "2",
     address: "101, Elanxa, New Yourk",
-    dob: "1987-02-17T14:22:18Z",
+    dateJoining: "1987-02-17T14:22:18Z",
     education: "M.B.B.S.",
     id: "62769af4a146747dc52c19fd",
   };
@@ -39,7 +39,7 @@ export class EditDoctorComponent {
       ],
       lastname: [this.formdata.lastname],
       gender: [this.formdata.gender, [Validators.required]],
-      mobile: [this.formdata.phonenumber, [Validators.required]],
+      mobile: [this.formdata.phoneNumber, [Validators.required]],
       password: [this.formdata.password],
       conformPassword: [this.formdata.conformPassword],
       email: [
@@ -49,9 +49,12 @@ export class EditDoctorComponent {
       designation: [this.formdata.designation],
       department: [this.formdata.department],
       address: [this.formdata.address],
-      dob: [this.formdata.dob, [Validators.required]],
+      dateJoining: [this.formdata.dateJoining],
       education: [this.formdata.education],
       chiefServiceId: "626803bca90d9004ebe8d188",
     });
+  }
+
+  ngOnInit(): void {
   }
 }

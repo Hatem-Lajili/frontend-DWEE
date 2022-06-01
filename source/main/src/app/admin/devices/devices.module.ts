@@ -22,13 +22,18 @@ import { SharedModule } from "src/app/shared/shared.module";
 import {DevicesRoutingModule} from "./devices-routing.module";
 import {AddDevicesComponent} from "./add-devices/add-devices.component";
 import {AlldevicesComponent} from "./alldevices/alldevices.component";
-import {DevicesService} from "./devices.service";
+import {DevicesService} from "./alldevices/devices.service";
+import {DeleteDialogComponent} from "./alldevices/dialogs/delete/delete.component";
+import {FormDialogComponent} from "./alldevices/dialogs/form-dialog/form-dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
   declarations: [
     AddDevicesComponent,
-    AlldevicesComponent
+    AlldevicesComponent,
+    DeleteDialogComponent,
+    FormDialogComponent
 
   ],
   imports: [
@@ -54,6 +59,7 @@ import {DevicesService} from "./devices.service";
     DevicesRoutingModule,
     ComponentsModule,
     SharedModule,
+    MatDialogModule,
   ],
   providers: [DevicesService],
 })

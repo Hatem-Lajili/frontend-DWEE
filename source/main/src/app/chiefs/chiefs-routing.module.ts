@@ -1,19 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Routes} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 
 const routes: Routes = [
   {
     path: "chiefs",
     loadChildren: () =>
-      import("./doctors/doctors.module").then((m) => m.DoctorsModule),
-  },
-  {
-    path: "departments",
-    loadChildren: () =>
-      import("./departments/departments.module").then(
-        (m) => m.DepartmentsModule
-      ),
+      import("../chiefs/doctors/doctors.module").then((m) => m.DoctorsModule),
   },
   {
     path: "devices",
@@ -27,9 +20,8 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [],
   imports: [
-    CommonModule
-  ]
+    RouterModule.forChild(routes)  ],
+  exports: [RouterModule]
 })
 export class ChiefsRoutingModule { }

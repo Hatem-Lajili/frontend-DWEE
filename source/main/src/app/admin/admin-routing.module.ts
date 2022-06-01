@@ -28,7 +28,9 @@ const routes: Routes = [
   },
   { path: "chief-service",
     loadChildren : () =>
-      import("./chief-service/chief-service.module").then((m) => m.ChiefServiceModule),
+      import("./chief-service/chief-service.module").then(
+        (m) => m.ChiefServiceModule
+      ),
   },
 
 ];

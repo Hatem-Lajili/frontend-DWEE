@@ -83,18 +83,22 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Gender</mat-header-cell>
                   <mat-cell *matCellDef="let row"> {{row.gender}}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="phonenumber">
+                <ng-container matColumnDef="phoneNumber">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.phonenumber}}</mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.phoneNumber}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="email">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
                   <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="date">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Birth Date</mat-header-cell>
+                <ng-container matColumnDef="password"  >
+                  <mat-header-cell *matHeaderCellDef mat-sort-header >Password</mat-header-cell>
+                  <mat-cell *matCellDef="let row" > {{row.password}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="dateJoining">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Date of Joining</mat-header-cell>
                   <mat-cell *matCellDef="let row"> {{row.
-                    birthDate | date: 'MM/dd/yyyy'}}</mat-cell>
+                    dateJoining | date: 'MM/dd/yyyy'}}</mat-cell>
                 </ng-container>
                 <!-- actions -->
                 <ng-container matColumnDef="actions">

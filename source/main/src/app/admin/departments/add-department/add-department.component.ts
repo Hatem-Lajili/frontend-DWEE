@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {DepartmentListService} from "../department-list/department-list.service";
 
 @Component({
   selector: "app-add-department",
@@ -8,17 +9,19 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class AddDepartmentComponent {
   departForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private departmentListService: DepartmentListService) {
     this.departForm = this.fb.group({
-      d_no: ["", [Validators.required]],
-      d_name: ["", [Validators.required]],
+      numberDepartment: ["", [Validators.required]],
+      name: ["", [Validators.required]],
       description: ["", [Validators.required]],
-      d_date: ["", [Validators.required]],
-      d_head: ["", [Validators.required]],
+      departmentDate: ["", [Validators.required]],
+      departmentHead: ["", [Validators.required]],
       status: ["Active", [Validators.required]],
     });
   }
   onSubmit() {
     console.log("Form Value", this.departForm.value);
+    this.departmentListService.addDepartmentList(this.departForm.value);
   }
 }

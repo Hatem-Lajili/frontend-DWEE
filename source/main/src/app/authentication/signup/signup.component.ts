@@ -2,7 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import {Role} from "../../core/models/role";
+import {Gender} from "../../admin/doctors/alldoctors/gender";
 import {AuthService} from "../../core/service/auth.service";
+import {DoctorsService} from "../../admin/doctors/alldoctors/doctors.service";
 @Component({
   selector: "app-signup",
   templateUrl: "./signup.component.html",
@@ -19,19 +21,25 @@ export class SignupComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService ,
+    private doctorService: DoctorsService,
   ) {}
   ngOnInit() {
     this.authForm = this.formBuilder.group({
-      username: ["", Validators.required],
+      firstname: ["", Validators.required],
+      lastname: ["", Validators.required],
       email: [
         "",
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
+      dateJoining: [],
+      phoneNumber: [],
+      role: ["Role", Validators.required],
+      gender: ["Gender", Validators.required],
       password: ["", Validators.required],
       cpassword: ["", Validators.required],
     });
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/";
   }
   get f() {
     return this.authForm.controls;
@@ -43,24 +51,20 @@ export class SignupComponent implements OnInit {
       return;
     }  else {
       this.authService
-        .register(this.f.email.value, this.f.password.value,"ROLE_ADMIN")
+        // tslint:disable-next-line:max-line-length
+        .register(this.f.email.value, this.f.firstname.value, this.f.lastname.value, this.f.phoneNumber.value, this.f.gender.value, this.f.dateJoining.value, this.f.password.value, this.f.role.value)
         .subscribe(
           (res) => {
             if (res) {
-              console.log('test res', res )
+              console.log('test res', res );
 
-                const role = res;
-
-                if (res) {
-                  console.log('here 11111')
-                  this.router.navigate(["/authentication/signin"]);
-                }}
+              const role = res;
+              console.log('here ROLE ', res );
+              this.router.navigate(["/authentication/signin"]);
+              }
+          //  this.doctorService.addDoctors(this.authService.currentUserValue);
           },
-          (error) => {
-
-
-
-          }
+          (error) => {}
         );
     }
   }

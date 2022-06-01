@@ -1,5 +1,5 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { Component, Inject } from "@angular/core";
+import {Component, Inject, OnInit} from "@angular/core";
 import { DepartmentListService } from "../../department-list.service";
 import {
   FormControl,
@@ -8,7 +8,6 @@ import {
   FormBuilder,
 } from "@angular/forms";
 import { DepartmentList } from "../../department-list.model";
-import { formatDate } from "@angular/common";
 @Component({
   selector: "app-form-dialog",
   templateUrl: "./form-dialog.component.html",
@@ -19,16 +18,18 @@ export class FormDialogComponent {
   dialogTitle: string;
   departmentListForm: FormGroup;
   departmentList: DepartmentList;
+  private id: string;
+
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public departmentListService: DepartmentListService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {
     // Set the defaults
     this.action = data.action;
     if (this.action === "edit") {
-      this.dialogTitle = data.departmentList.d_name;
+      this.dialogTitle = "Update DepartmentList";
       this.departmentList = data.departmentList;
     } else {
       this.dialogTitle = "New DepartmentList";
@@ -50,19 +51,16 @@ export class FormDialogComponent {
   createContactForm(): FormGroup {
     return this.fb.group({
       id: [this.departmentList.id],
-      d_no: [this.departmentList.d_no],
-      d_name: [this.departmentList.d_name],
+      numberDepartment: [this.departmentList.numberDepartment],
+      name: [this.departmentList.name],
       description: [this.departmentList.description],
-      d_date: [
-        formatDate(this.departmentList.d_date, "yyyy-MM-dd", "en"),
-        [Validators.required],
-      ],
-      d_head: [this.departmentList.d_head],
+      departmentHead: [this.departmentList.departmentHead],
+      departmentDate: [this.departmentList.departmentDate],
       status: [this.departmentList.status],
     });
   }
   submit() {
-    // emppty stuff
+    this.departmentListService.addDepartmentList( this.departmentListForm.value);
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -72,4 +70,14 @@ export class FormDialogComponent {
       this.departmentListForm.getRawValue()
     );
   }
+
+/*  ngOnInit(): void {
+      this.httpClient
+      .get<DepartmentList>("http://localhost:8989/api/departments/" + this.currentDepartment.id)
+      .subscribe(data => {
+        this.currentDepartment = data;
+        console.log('test', this.currentDepartment);
+      });
+      console.log('cherguia', this.departmentListForm.value);
+  }*/
 }

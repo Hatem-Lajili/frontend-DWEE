@@ -24,21 +24,19 @@ export class AlldoctorsComponent
 {
   displayedColumns = [
     "select",
-    "img",
-    "name",
-    "department",
-    "specialization",
-    "degree",
-    "mobile",
+    "firstname",
+    "lastname",
+    "gender",
+    "phoneNumber",
     "email",
-    "date",
+    "dateJoining",
     "actions",
   ];
   exampleDatabase: DoctorsService | null;
   dataSource: ExampleDataSource | null;
   selection = new SelectionModel<Doctors>(true, []);
   index: number;
-  id: number;
+  id: string;
   doctors: Doctors | null;
   constructor(
     public httpClient: HttpClient,
@@ -74,7 +72,7 @@ export class AlldoctorsComponent
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
-        // For add we're just pushing a new row inside DataServicex
+        // For add we're just pushing a new row inside DataService
         this.exampleDatabase.dataChange.value.unshift(
           this.doctorsService.getDialogData()
         );
@@ -109,7 +107,7 @@ export class AlldoctorsComponent
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
           (x) => x.id === this.id
         );
-        // Then you update that record using data from dialogData (values you enetered)
+        // Then you update that record using data from dialogData (values you entered)
         this.exampleDatabase.dataChange.value[foundIndex] =
           this.doctorsService.getDialogData();
         // And lastly refresh table
@@ -177,6 +175,7 @@ export class AlldoctorsComponent
         (d) => d === item
       );
       // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
+      this.doctorsService.deleteDoctors(item.id);
       this.exampleDatabase.dataChange.value.splice(index, 1);
 
       this.refreshTable();
@@ -242,7 +241,7 @@ export class ExampleDataSource extends DataSource<Doctors> {
       this.filterChange,
       this.paginator.page,
     ];
-    this.exampleDatabase.getAllDoctorss();
+    this.exampleDatabase.getAllDoctors();
     return merge(...displayDataChanges).pipe(
       map(() => {
         // Filter data
@@ -250,12 +249,10 @@ export class ExampleDataSource extends DataSource<Doctors> {
           .slice()
           .filter((doctors: Doctors) => {
             const searchStr = (
-              doctors.name +
-              doctors.department +
-              doctors.specialization +
-              doctors.degree +
+              doctors.firstname +
+              doctors.lastname +
               doctors.email +
-              doctors.mobile
+              doctors.phoneNumber
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -278,26 +275,23 @@ export class ExampleDataSource extends DataSource<Doctors> {
       return data;
     }
     return data.sort((a, b) => {
-      let propertyA: number | string = "";
-      let propertyB: number | string = "";
+      let propertyA: number | string | Date = "";
+      let propertyB: number | string | Date = "";
       switch (this._sort.active) {
         case "id":
           [propertyA, propertyB] = [a.id, b.id];
           break;
         case "name":
-          [propertyA, propertyB] = [a.name, b.name];
+          [propertyA, propertyB] = [a.firstname, b.firstname];
           break;
         case "email":
           [propertyA, propertyB] = [a.email, b.email];
           break;
-        case "date":
-          [propertyA, propertyB] = [a.date, b.date];
+        case "dateJoining":
+          [propertyA, propertyB] = [a.dateJoining, b.dateJoining];
           break;
-        case "time":
-          [propertyA, propertyB] = [a.department, b.department];
-          break;
-        case "mobile":
-          [propertyA, propertyB] = [a.mobile, b.mobile];
+        case "phoneNumber":
+          [propertyA, propertyB] = [a.phoneNumber, b.phoneNumber];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
